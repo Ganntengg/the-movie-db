@@ -12,7 +12,7 @@ const Movies =  () => {
     }, [])
 
     const searchMov = async (q) => {
-        if(q.length > 3) {
+        if(q.length > 2) {
             const search = await searchMovie(q)
             setPopularMovie(search)
         } else if(q.length < 1) {
@@ -24,17 +24,23 @@ const Movies =  () => {
     
 
     const PerMovie = () => {
-        return popularMovie.map((m,i)=> {
-        return (
-        <div key={i} className='w-64 h-[475px] bg-transparent border-2 p-3 rounded-lg'>
-            <img src={m.poster_path != null ? `${baseUrlImg}${m.poster_path}` : './../../public/default.png'} alt="movie img" className='rounded-lg mb-3' />
-            <h1 className='text-sm font-bold'>{m.title}</h1>
-            <p>release: {m.release_date}</p>
-            <h4>{`⭐${m.vote_average}`}</h4>
-        </div>
-        )
-
-        })
+        if(popularMovie.length == 0) {
+            return(
+                <div className="text-5xl">Film Yang Kamu Cari Tidak ada!</div>
+            )
+        } else {
+            return popularMovie.map((m,i)=> {
+            return (
+            <div key={i} className='w-64 h-[475px] bg-transparent border-2 p-3 rounded-lg'>
+                <img src={m.poster_path != null ? `${baseUrlImg}${m.poster_path}` : './../../public/default.png'} alt="movie img" className='rounded-lg mb-3' />
+                <h1 className='text-sm font-bold'>{m.title}</h1>
+                <p>release: {m.release_date}</p>
+                <h4>{`⭐${m.vote_average}`}</h4>
+            </div>
+            )
+    
+            })   
+        }
     }
     return (
         <>
@@ -46,7 +52,6 @@ const Movies =  () => {
         </div>
     {/* Movie Container */}
       <div className="w-full flex flex-wrap gap-3 justify-center items-center pt-5">
-        {/* 1 Movie Wrapper */}
         <PerMovie />
       </div>
     </div>

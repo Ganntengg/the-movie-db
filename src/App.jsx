@@ -3,10 +3,6 @@ import Movies from './components/movie'
 import {searchMovie} from './components/api'
 
 function App() {
-  
-  
-  
-  
   return (
     <Movies />
   )
