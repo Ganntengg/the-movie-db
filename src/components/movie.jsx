@@ -1,7 +1,7 @@
 import {getMovie, searchMovie} from './api'
 import { useEffect, useState } from 'react'
 
-const baseUrlImg = "https://image.tmdb.org/t/p/w500"
+const baseUrlImg = import.meta.env.VITE_IMGURL
 
 const Movies =  () => {
     const [popularMovie, setPopularMovie] = useState([])
