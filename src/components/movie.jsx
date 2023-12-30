@@ -4,44 +4,38 @@ import { useEffect, useState } from 'react'
 const baseUrlImg = import.meta.env.VITE_IMGURL
 
 const Movies =  () => {
-    const [popularMovie, setPopularMovie] = useState([])
+    const [movieList, setMovieList] = useState([])
     const [inputValue, setInputValue] = useState('')
 
     const handleChange = (e) => {
-        setInputValue(e)
+        if(e.length > 2) {
+            setInputValue(e)
+        } else if(e.length == 0) {
+            getMovie().then(r => {
+                setMovieList(r)
+            })
+        }
     }
     const handleClick = (inputvalue) => {
         searchMovie(inputValue).then(r => {
-            setPopularMovie(r)
+            setMovieList(r)
         })
     }
     useEffect( () => {
         getMovie().then(r => {
-            setPopularMovie(r)
+            setMovieList(r)
         })        
     }, [])
 
-    const searchMov = async (q) => {
-        if(q.length > 2) {
-            const search = await searchMovie(q)
-            setPopularMovie(search)
-        } else if(q.length < 1) {
-            getMovie().then(r => {
-                setPopularMovie(r)
-            })
-        }
-      }
-    
-
     const PerMovie = () => {
-        if(popularMovie.length == 0) {
+        if(movieList.length == 0) {
             return(
                 <div className="text-5xl">Film Yang Kamu Cari Tidak ada!</div>
             )
         } else {
-            return popularMovie.map((m,i)=> {
+            return movieList.map((m,i)=> {
             return (
-            <button key={i} className='w-44 h-[375px] bg-transparent p-3 rounded-lg text-start flex flex-col justify-start border-2 group'>
+            <button key={i} className='w-44 h-[375px] bg-transparent p-3 rounded-lg text-start flex flex-col justify-start text-white group'>
                 <img src={m.poster_path != null ? `${baseUrlImg}${m.poster_path}` : './../../public/default.png'} alt="movie img" className='rounded-lg mb-3 group-hover:scale-110 transition duration-300' />
                 <h1 className='text-sm font-bold'>{m.title}</h1>
                 <p>release: {m.release_date}</p>
@@ -54,8 +48,8 @@ const Movies =  () => {
     }
     return (
         <>
-        <div className='p-5 flex flex-col items-center '>
-      <h1 className='text-4xl font-bold align-middle mb-4'>Gani MovieDB</h1>
+        <div className='p-5 flex flex-col items-center bg-slate-900 '>
+      <h1 className='text-4xl font-bold align-middle mb-4 text-white'>Gani MovieDB</h1>
         <div className='w-full flex justify-center items-center'>
         {/* Search Bar */}
           <input type="text" name="search" id="search" placeholder='Search Movie Here...' onChange={({target}) => handleChange(target.value)} className='border rounded-lg rounded-r-none shadow-md outline-none px-3 py-2' />
