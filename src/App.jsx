@@ -1,10 +1,14 @@
-import { useState, useEffect } from 'react'
-import Movies from './components/movie'
-import {searchMovie} from './components/api'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import Home from './Pages/HomePage'
 
-function App() {
+function App(props) {
   return (
-    <Movies />
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        {/* <Route path='/popular' element={} /> */}
+      </Routes>
+    </Router>
   )
 }
 
