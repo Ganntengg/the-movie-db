@@ -6,6 +6,9 @@ export default {
       fontFamily: {
         poppins: "Poppins",
       },
+      aspectRatio: {
+        portrait: "2/3",
+      },
     },
   },
   plugins: [],
