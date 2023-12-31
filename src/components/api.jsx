@@ -12,15 +12,15 @@ const getPopularMovie = async () => {
     const movie = await axios.get(`${baseUrl}/movie/popular?api_key=${API}`)
     return movie.data.results
 }
-const getMovieDetails = async () => {
-    const movie = await axios.get(`${baseUrl}/movie/343611?api_key=${API}`)
-    return movie.data
-}
 const searchMovie = async (s) => {
     const search = await axios.get(
         `${baseUrl}/search/movie?query=${s}&api_key=${API}`
     )
     return search.data.results;
+}
+const getMovieDetails = async (id) => {
+    const movie = await axios.get(`${baseUrl}/movie/${id}?api_key=${API}`)
+    return movie.data
 }
 
 
