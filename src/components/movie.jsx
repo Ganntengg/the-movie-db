@@ -2,6 +2,7 @@ import { getPopularMovie, searchMovie, getMovieDetails} from './api'
 import { useEffect, useState } from 'react'
 import NavigationBar from './nav'
 import { Link } from 'react-router-dom'
+import ImageSlider from './imgSlider'
 
 const baseUrlImg = import.meta.env.VITE_IMGURL
 
@@ -53,14 +54,18 @@ const Movies =  () => {
         }
     }
     return (
-        <div className='font-poppins'>
+        <div className='font-poppins relative'>
         <NavigationBar />
+        <ImageSlider />
         <div className='p-5 flex flex-col items-center bg-slate-900 font-poppins '>
         <div className=' justify-center items-center absolute top-2 right-10'>
         {/* Search Bar */}
             <input type="text" name="search" id="search" placeholder='Search Movie Here...' onChange={({target}) => handleChange(target.value)} 
             className='border bg-transparent transition duration-300 origin-center placeholder:text-white focus:placeholder:text-slate-400 focus:text-black focus:bg-white rounded-lg rounded-r-none shadow-md outline-none px-3 py-2' />
             <button className='border rounded-lg rounded-l-none shadow-md px-3 py-2 bg-sky-500' onClick={() => handleClick(inputValue)}>Search</button>
+        </div>
+        <div className='flex w-[87%] text-white'>
+            <h1 className='text-3xl font-bold'>Popular Movies</h1>
         </div>
     {/* Movie Container */}
         <div className="w-full flex flex-wrap justify-center  items-center pt-5">        
