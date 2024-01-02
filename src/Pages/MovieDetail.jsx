@@ -1,4 +1,4 @@
-import MovieDetails from '../components/movieDetail/movieDetails'
+import MovieDetails from '../components/movieDetails'
 
 export default function MovieDetail() {
     return (
