@@ -24,7 +24,7 @@ const Movies =  () => {
             return movieList.map((m,i)=> {
             return (
                     <Link to={`/movies/${m.id}`} key={i}>
-                <button key={i} className=' w-44 h-64 m-2 border-2 relative bg-transparent  rounded-lg text-start flex flex-col font-semibold justify-start overflow-hidden text-white group'>
+                <button className=' w-44 h-64 m-2 border-2 relative bg-transparent  rounded-lg text-start flex flex-col font-semibold justify-start overflow-hidden text-white group'>
                         <input type="hidden" name="id" id={m.id} />
                         <img src={m.poster_path ? `${baseUrlImg}${m.poster_path}` : './../../public/default.jpeg'} alt="movie img" 
                             className='rounded-lg group-hover:scale-110 filter group-hover:blur-sm group-hover:brightness-50 transition duration-300' />
