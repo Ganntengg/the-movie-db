@@ -8,22 +8,7 @@ const baseUrlImg = import.meta.env.VITE_IMGURL
 
 const Movies =  () => {
     const [movieList, setMovieList] = useState([])
-    const [inputValue, setInputValue] = useState('')
     
-    const handleChange = (e) => {
-        if(e.length > 2) {
-            setInputValue(e)
-        } else if(e.length == 0) {
-            getPopularMovie().then(r => {
-                setMovieList(r)
-            })
-        }
-    }
-    const handleClick = (i) => {
-        searchMovie(i).then(r => {
-            setMovieList(r)
-        })
-    }
     useEffect( () => {
         getPopularMovie().then(r => {
             setMovieList(r)
@@ -33,7 +18,7 @@ const Movies =  () => {
     const PerMovie = () => {
         if(movieList.length == 0) {
             return(
-                <div className=" text-5xl">Film Yang Kamu Cari Tidak ada!</div>
+                <div className=" text-5xl h-[91vh]">Loading...</div>
             )
         } else {
             return movieList.map((m,i)=> {
@@ -58,12 +43,6 @@ const Movies =  () => {
         <NavigationBar />
         <ImageSlider />
         <div className='p-5 flex flex-col items-center bg-slate-900 font-poppins '>
-        <div className=' justify-center items-center absolute top-2 right-10'>
-        {/* Search Bar */}
-            <input type="text" name="search" id="search" placeholder='Search Movie Here...' onChange={({target}) => handleChange(target.value)} 
-            className='border bg-transparent transition duration-300 origin-center placeholder:text-white focus:placeholder:text-slate-400 focus:text-black focus:bg-white rounded-lg rounded-r-none shadow-md outline-none px-3 py-2' />
-            <button className='border rounded-lg rounded-l-none shadow-md px-3 py-2 bg-sky-500' onClick={() => handleClick(inputValue)}>Search</button>
-        </div>
         <div className='flex w-[87%] text-white'>
             <h1 className='text-3xl font-bold'>Popular Movies</h1>
         </div>
