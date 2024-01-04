@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "css": "npx tailwindcss -i ./src/components/css/input.css -o ./style.css --watch",
+    "cssbuild": "npx tailwindcss -o build.css --minify",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",

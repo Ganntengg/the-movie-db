@@ -49,7 +49,7 @@ const MovieDetails =  () => {
                 </div>
                 {/* Overview */}
                 <div className="relative bottom-0 h-[50%]">
-                    <h1 className="absolute top-[40%] left-32 text-white">{detailValue.overview}</h1>
+                    <h1 className="absolute top-[40%] left-32 text-white pr-10">{detailValue.overview}</h1>
                 </div>
             </div>
         </>
