@@ -13,7 +13,7 @@ const MovieDetails =  () => {
         getMovieDetails(id).then(r => setDetailValue(r))
     },[])
 
-
+console.log(detailValue)
 
     const PerGenre = () => {
         if(detailValue.length == 0) {
@@ -26,11 +26,25 @@ const MovieDetails =  () => {
             })
         }
     }
+    const PerMovieCompanies = () => {
+        if(detailValue.length == 0) {
+            return <h1 className="text-2xl">Loading...</h1>
+        } else {
+            return detailValue.production_companies.map((prod, i) => {
+                return (
+                    <div key={i} className="w-full h-[30%] flex flex-col items-center p-0 relative">
+                        <img className="w-[30%] h-[20%] aspect-square object-contain" src={`${baseUrlImg}/${prod.logo_path}`} />
+                        <p className="text-white text-2xl absolute bottom-0 font-bold">{prod.name}</p>
+                    </div>
+                )
+            })
+        }
+    }
 
     return (
         <>
-            <div className="relative w-full h-screen">
-                <div className="relative  h-[50%] w-full">
+            <div className="relative w-full h-[130vh]">
+                <div className="relative  h-[50vh] w-full">
                     {/* Header section */}
                     <img src={`${baseUrlImg}/${detailValue.backdrop_path}`} alt="" className={` brightness-50 object-center w-full h-full object-cover`} />
                     <img src={`${baseUrlImg}/${detailValue.poster_path}`} alt="" className="absolute -bottom-1/3 left-32 aspect-portrait w-40" />
@@ -48,9 +62,14 @@ const MovieDetails =  () => {
                         </div>
                 </div>
                 {/* Overview */}
-                <div className="relative bottom-0 h-[50%]">
+                <div className="relative bottom-0 h-[30%]">
                     <h1 className="absolute top-[40%] left-32 text-white pr-10">{detailValue.overview}</h1>
                 </div>
+            </div>
+            <p className="w-full text-center text-white text-3xl font-bold">Production With </p>
+            {/* Movie Company */}
+            <div className="w-full h-1/2 flex items-center justify-center">
+                <PerMovieCompanies />
             </div>
         </>
     )
