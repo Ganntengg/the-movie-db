@@ -47,7 +47,7 @@ const Movies =  () => {
                     <h1 className='text-3xl font-bold'>Popular Movies</h1>
                 </div>
                 {/* Movie Container */}
-                <div className="w-full flex flex-wrap justify-center  items-center pt-5">        
+                <div className="w-full flex flex-wrap justify-center items-center pt-5">        
                     <PerMovie />
                 </div>
             </div>

@@ -19,7 +19,7 @@ export default function ImageSlider() {
 
     return (
         <div className='bg-slate-900'>
-            <AliceCarousel autoPlay autoPlayInterval={3000} infinite={true} disableButtonsControls={true}>
+            <AliceCarousel autoPlay autoPlayInterval={2000} infinite={true} disableButtonsControls={true}>
                 {topRated.map((m,i) => {
                 return (
                     <Link key={i} to={`/movies/${m.id}`}>

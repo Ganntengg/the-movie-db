@@ -33,7 +33,7 @@ console.log(detailValue)
             return detailValue.production_companies.map((prod, i) => {
                 return (
                     <div key={i} className="w-full h-[30%] flex flex-col items-center p-0 relative">
-                        <img className="w-[30%] h-[20%] aspect-square object-contain" src={`${baseUrlImg}/${prod.logo_path}`} />
+                        <img className="w-[30%] h-[20%] aspect-square object-contain mb-20" src={prod.logo_path ? `${baseUrlImg}/${prod.logo_path}` : "./../../public/defaultCompanyPoster.jpeg"} alt="Company Image" />
                         <p className="text-white text-2xl absolute bottom-0 font-bold">{prod.name}</p>
                     </div>
                 )
@@ -43,7 +43,7 @@ console.log(detailValue)
 
     return (
         <>
-            <div className="relative w-full h-[130vh]">
+            <div className="relative w-full h-[100vh]">
                 <div className="relative  h-[50vh] w-full">
                     {/* Header section */}
                     <img src={`${baseUrlImg}/${detailValue.backdrop_path}`} alt="" className={` brightness-50 object-center w-full h-full object-cover`} />
@@ -66,7 +66,7 @@ console.log(detailValue)
                     <h1 className="absolute top-[40%] left-32 text-white pr-10">{detailValue.overview}</h1>
                 </div>
             </div>
-            <p className="w-full text-center text-white text-3xl font-bold">Production With </p>
+            <p className="w-full text-center text-white text-3xl font-bold mb-10">Production With </p>
             {/* Movie Company */}
             <div className="w-full h-1/2 flex items-center justify-center">
                 <PerMovieCompanies />
