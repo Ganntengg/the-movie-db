@@ -1,20 +1,42 @@
-import { getPopularMovie } from './api'
+import { getPopularMovie, getAllGenre, getMovieByGenre } from './api'
 import { useEffect, useState } from 'react'
 import NavigationBar from './nav'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import ImageSlider from './imgSlider'
 
 const baseUrlImg = import.meta.env.VITE_IMGURL
 
 const Movies =  () => {
     const [movieList, setMovieList] = useState([])
+    const [genreList, setGenreList] = useState([])
+    const [movieByGenre, setMovieByGenre] = useState([])
+    const [selectedGenre, setSelectedGenre] = useState(28)
     
     useEffect( () => {
         getPopularMovie().then(r => {
+                getMovieByGenre(selectedGenre).then(r => {
+                    setMovieByGenre(r)
+                })
             setMovieList(r)
-        })        
-    }, [])
+        })
+        getAllGenre().then(r => {
+            setGenreList(r)
+        })
+    }, [selectedGenre])
 
+    const PerGenre = () => {
+        if(genreList.length == 0) {
+            return <div className="text-5xl">Loading...</div>
+        } else {
+            return genreList.map((g,i) => {
+                return(
+                    <button onClick={() => {setSelectedGenre(g.id)}} key={i} className='p-4'>
+                        {g.name}
+                    </button>
+                )
+            })
+        }
+    }
     const PerMovie = () => {
         if(movieList.length == 0) {
             return(
@@ -49,6 +71,9 @@ const Movies =  () => {
                 {/* Movie Container */}
                 <div className="w-full flex flex-wrap justify-center items-center pt-5">        
                     <PerMovie />
+                </div>
+                <div>
+                    <PerGenre />
                 </div>
             </div>
         </div>

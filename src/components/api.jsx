@@ -23,5 +23,15 @@ const getMovieDetails = async (id) => {
     return movie.data
 }
 
+const getAllGenre = async () => {
+    const genre = await axios.get(`${baseUrl}/genre/movie/list?api_key=${API}`)
+    return genre.data.genres
+}
 
-export {getTopRatedMovie, getPopularMovie, searchMovie, getMovieDetails}
+const getMovieByGenre = async (id) => {
+    const movieByGenre = await axios.get(`${baseUrl}/discover/movie?api_key=${API}&with_genres=${id}`)
+    return movieByGenre.data.results
+}
+
+
+export {getTopRatedMovie, getPopularMovie, searchMovie, getMovieDetails, getAllGenre, getMovieByGenre}

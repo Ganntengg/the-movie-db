@@ -650,10 +650,6 @@ video {
   margin: 0.5rem;
 }
 
-.m-10{
-  margin: 2.5rem;
-}
-
 .mx-12{
   margin-left: 3rem;
   margin-right: 3rem;
@@ -664,14 +660,6 @@ video {
   margin-bottom: 0.75rem;
 }
 
-.mr-2{
-  margin-right: 0.5rem;
-}
-
-.mt-3{
-  margin-top: 0.75rem;
-}
-
 .mb-10{
   margin-bottom: 2.5rem;
 }
@@ -680,8 +668,12 @@ video {
   margin-bottom: 5rem;
 }
 
-.mb-5{
-  margin-bottom: 1.25rem;
+.mr-2{
+  margin-right: 0.5rem;
+}
+
+.mt-3{
+  margin-top: 0.75rem;
 }
 
 .flex{
@@ -712,8 +704,8 @@ video {
   height: 16rem;
 }
 
-.h-\[130vh\]{
-  height: 130vh;
+.h-\[100vh\]{
+  height: 100vh;
 }
 
 .h-\[20\%\]{
@@ -738,18 +730,6 @@ video {
 
 .h-full{
   height: 100%;
-}
-
-.h-\[140vh\]{
-  height: 140vh;
-}
-
-.h-\[100vh\]{
-  height: 100vh;
-}
-
-.h-\[10vh\]{
-  height: 10vh;
 }
 
 .w-10{
@@ -822,14 +802,6 @@ video {
   gap: 0.5rem;
 }
 
-.gap-3{
-  gap: 0.75rem;
-}
-
-.gap-10{
-  gap: 2.5rem;
-}
-
 .overflow-hidden{
   overflow: hidden;
 }
@@ -883,11 +855,6 @@ video {
   background-color: transparent;
 }
 
-.bg-white{
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
 .object-contain{
   -o-object-fit: contain;
      object-fit: contain;
@@ -921,6 +888,10 @@ video {
 
 .p-5{
   padding: 1.25rem;
+}
+
+.p-4{
+  padding: 1rem;
 }
 
 .px-3{
