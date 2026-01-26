@@ -1,4 +1,4 @@
-import SearchMovie from '../components/searchMovie'
+import SearchMovie from "../components/searchMovie"
 
 const Search = () => {
     return (

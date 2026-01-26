@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
-import { getMovieDetails } from "./api"
+import { getMovieDetails } from "../api/api"
 import { useParams } from "react-router-dom"
+import PerMovieCompanies from "./MovieDetail/PerMovieCompanies"
+import PerGenre from "./MovieDetail/PerGenre"
 
 const baseUrlImg = import.meta.env.VITE_IMGURL
 
@@ -12,35 +14,7 @@ const MovieDetails =  () => {
     useEffect( () => {
         getMovieDetails(id).then(r => setDetailValue(r))
     },[])
-
-console.log(detailValue)
-
-    const PerGenre = () => {
-        if(detailValue.length == 0) {
-            return <h1 className="text-2xl">Loading...</h1>
-        } else {
-            return detailValue.genres.map((genre, i) => {
-                return (
-                    <li key={i} className="hover:underline cursor-pointer">{genre.name}</li>
-                )
-            })
-        }
-    }
-    const PerMovieCompanies = () => {
-        if(detailValue.length == 0) {
-            return <h1 className="text-2xl">Loading...</h1>
-        } else {
-            return detailValue.production_companies.map((prod, i) => {
-                return (
-                    <div key={i} className="w-full h-[30%] flex flex-col items-center p-0 relative">
-                        <img className="w-[30%] h-[20%] aspect-square object-contain mb-20" src={prod.logo_path ? `${baseUrlImg}/${prod.logo_path}` : "./../../public/defaultCompanyPoster.jpeg"} alt="Company Image" />
-                        <p className="text-white text-2xl absolute bottom-0 font-bold">{prod.name}</p>
-                    </div>
-                )
-            })
-        }
-    }
-
+    
     return (
         <>
             <div className="relative w-full h-[100vh]">
@@ -56,7 +30,7 @@ console.log(detailValue)
                     <h1 className="text-yellow-300 absolute font-bold text-xl -bottom-7 left-80 flex items-center"><i className="fa-solid fa-star mr-2 my-3"></i>{Math.round(detailValue.vote_average * 10) / 10}</h1>
                     <div className="text-white absolute font-semibold text-xl -bottom-11 left-80 w-[300px]">
                         <ul className="flex items-center gap-2 absolute bottom-0 left-0">
-                            <PerGenre />
+                            <PerGenre detailValue={detailValue} />
                         </ul>
                         <h1 className="absolute -bottom-6  flex items-center mr-2 text-gray-500-400">{detailValue.release_date}</h1>
                         </div>
@@ -69,7 +43,7 @@ console.log(detailValue)
             <p className="w-full text-center text-white text-3xl font-bold mb-10">Production With </p>
             {/* Movie Company */}
             <div className="w-full h-1/2 flex items-center justify-center">
-                <PerMovieCompanies />
+                <PerMovieCompanies detailValue={detailValue} />
             </div>
         </>
     )

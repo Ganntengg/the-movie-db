@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { searchMovie } from "../components/api"
+import { searchMovie } from "../api/api"
 import { useSearchParams } from "react-router-dom"
-import NavigationBar from "./nav"
+import NavigationBar from "./layout/NavigationBar"
 
 const baseUrlImg = import.meta.env.VITE_IMGURL
 
-export default function Search() {
+export default function SearchMovie() {
     const [hasil, setHasil] = useState([])
     const [searchParams] = useSearchParams()
     useEffect(() => {

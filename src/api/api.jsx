@@ -33,5 +33,10 @@ const getMovieByGenre = async (id) => {
     return movieByGenre.data.results
 }
 
+const getSeries = async () => {
+    const movie = await axios.get(`${baseUrl}/discover/tv?api_key=${API}`)
+    return movie.data.results
+}
 
-export {getTopRatedMovie, getPopularMovie, searchMovie, getMovieDetails, getAllGenre, getMovieByGenre}
+
+export {getTopRatedMovie, getPopularMovie, searchMovie, getMovieDetails, getAllGenre, getMovieByGenre, getSeries}

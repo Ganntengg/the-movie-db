@@ -2,7 +2,4 @@ Simple MovieDB UI from the original website and catching the DB with API. Go che
 
 Feature yang harus dimasuki :
 
-- Di home filter berdasarkan :
-  - FILM
-  - SERIES
 - Perbaiki tampilan di movieDetails

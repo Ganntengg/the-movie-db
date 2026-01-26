@@ -1,26 +1,15 @@
-import {useState, useEffect} from 'react'
-import {getTopRatedMovie} from './api'
 import AliceCarousel from 'react-alice-carousel'
-import './css/slider.css'
+import './../css/slider.css'
 import { Link } from 'react-router-dom';
 
 
 const baseUrlImg = import.meta.env.VITE_IMGURL
 
-export default function ImageSlider() {
-    const [topRated, setTopRated] = useState([])
-
-    useEffect(() => {
-    getTopRatedMovie().then(r => {
-        setTopRated(r)
-    })
-}, [])
-
-
+export default function TopRatedMovie({topRatedMovie}) {
     return (
         <div className='bg-slate-900'>
             <AliceCarousel autoPlay autoPlayInterval={2000} infinite={true} disableButtonsControls={true}>
-                {topRated.map((m,i) => {
+                {topRatedMovie.map((m,i) => {
                 return (
                     <Link key={i} to={`/movies/${m.id}`}>
                         <h1 className='absolute z-20 text-white top-48 text-5xl left-24 font-bold'>{m.original_title}</h1>
