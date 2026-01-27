@@ -23,6 +23,11 @@ const getMovieDetails = async (id) => {
     return movie.data
 }
 
+const getSeriesDetails = async (id) => {
+    const series = await axios.get(`${baseUrl}/tv/${id}?api_key=${API}`)
+    return series.data
+}
+
 const getAllGenre = async () => {
     const genre = await axios.get(`${baseUrl}/genre/movie/list?api_key=${API}`)
     return genre.data.genres
@@ -39,4 +44,4 @@ const getSeries = async () => {
 }
 
 
-export {getTopRatedMovie, getPopularMovie, searchMovie, getMovieDetails, getAllGenre, getMovieByGenre, getSeries}
+export {getTopRatedMovie, getPopularMovie, searchMovie, getMovieDetails, getAllGenre, getMovieByGenre, getSeries, getSeriesDetails}

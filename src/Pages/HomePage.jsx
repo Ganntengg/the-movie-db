@@ -1,6 +1,6 @@
 import Movies from "../components/Movies"
 
-export default function Home() {
+export default function HomePage() {
     return(
         
         <Movies />

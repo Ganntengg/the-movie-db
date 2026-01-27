@@ -16,7 +16,6 @@ export default function SearchMovie() {
             setHasil(r)
         })
 
-        
     }, [])
     const PerMovie = () => {
         if(hasil.length == 0) {
@@ -36,9 +35,7 @@ export default function SearchMovie() {
                         <h4 className='p-1.5 absolute group-hover:scale-100 origin-left transition duration-300 scale-0 bottom-0 mt-3 text-yellow-400 tracking-widest'><i className="fa-solid fa-star mr-2  text-yellow-400"></i>{`${Math.round(m.vote_average * 10) / 10}`}</h4>
                     </button>
                 </Link>
-            )
-    
-            })   
+            )})   
         }
     }
     return (

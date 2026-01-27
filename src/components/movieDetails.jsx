@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { getMovieDetails } from "../api/api"
 import { useParams } from "react-router-dom"
-import PerMovieCompanies from "./MovieDetail/PerMovieCompanies"
-import PerGenre from "./MovieDetail/PerGenre"
+import PerMovieCompanies from "./Detail/PerMovieCompanies"
+import PerGenre from "./Detail/PerGenre"
 
 const baseUrlImg = import.meta.env.VITE_IMGURL
 
@@ -14,35 +14,62 @@ const MovieDetails =  () => {
     useEffect( () => {
         getMovieDetails(id).then(r => setDetailValue(r))
     },[])
-    
+    console.log(detailValue)
     return (
         <>
-            <div className="relative w-full h-[100vh]">
-                <div className="relative  h-[50vh] w-full">
-                    {/* Header section */}
-                    <img src={`${baseUrlImg}/${detailValue.backdrop_path}`} alt="" className={` brightness-50 object-center w-full h-full object-cover`} />
-                    <img src={`${baseUrlImg}/${detailValue.poster_path}`} alt="" className="absolute -bottom-1/3 left-32 aspect-portrait w-40" />
-                    {/* Back Button */}
-                    <a href="/" className="absolute  top-5 left-5 bg-transparent border-2 border-white text-white hover:animate-[goLeft_1s_ease-in-out_infinite] w-10 flex items-center justify-center h-10 rounded-full">
+            {/* HERO SECTION */}
+            <div className="relative w-full min-h-screen text-white">
+                {/* BACKDROP */}
+                <div className="relative h-[60vh] w-full">
+                    <img
+                        src={`${baseUrlImg}/${detailValue.backdrop_path}`}
+                        alt=""
+                        className="w-full h-full object-cover brightness-50"
+                    />
+
+                    {/* BACK BUTTON */}
+                    <a
+                        href="/"
+                        className="absolute top-5 left-5 border-2 border-white w-10 h-10 flex items-center justify-center rounded-full hover:animate-[goLeft_1s_ease-in-out_infinite]"
+                    >
                         <i className="fa-solid fa-arrow-left"></i>
                     </a>
-                    <h1 className="text-white absolute font-bold text-5xl bottom-2 left-80">{detailValue.original_title}</h1>
-                    <h1 className="text-yellow-300 absolute font-bold text-xl -bottom-7 left-80 flex items-center"><i className="fa-solid fa-star mr-2 my-3"></i>{Math.round(detailValue.vote_average * 10) / 10}</h1>
-                    <div className="text-white absolute font-semibold text-xl -bottom-11 left-80 w-[300px]">
-                        <ul className="flex items-center gap-2 absolute bottom-0 left-0">
+                </div>
+
+                {/* MOVIE INFO */}
+                <div className="relative flex gap-10 px-32 -mt-24">
+                    {/* POSTER */}
+                    <img
+                        src={`${baseUrlImg}/${detailValue.poster_path}`}
+                        alt=""
+                        className="w-40 rounded shadow-lg"
+                    />
+                    {/* TEXT INFO */}
+                    <div className="flex flex-col gap-2">
+                        <h1 className="text-5xl font-bold">{detailValue.original_title}</h1>
+                        <div className="flex items-center text-2xl text-yellow-300 font-semibold">
+                            <i className="fa-solid fa-star mr-2"></i>
+                            {Math.round(detailValue.vote_average * 10) / 10}
+                        </div>
+                        {/* GENRE */}
+                        <ul className="flex gap-2">
                             <PerGenre detailValue={detailValue} />
                         </ul>
-                        <h1 className="absolute -bottom-6  flex items-center mr-2 text-gray-500-400">{detailValue.release_date}</h1>
-                        </div>
+                    <p className="text-gray-400">{detailValue.release_date}</p>
+                    </div>
                 </div>
-                {/* Overview */}
-                <div className="relative bottom-0 h-[30%]">
-                    <h1 className="absolute top-[40%] left-32 text-white pr-10">{detailValue.overview}</h1>
+                {/* OVERVIEW */}
+                <div className="px-32 mt-10 max-w-5xl">
+                    <p className="text-gray-200 leading-relaxed">
+                        {detailValue.overview}
+                    </p>
                 </div>
             </div>
-            <p className="w-full text-center text-white text-3xl font-bold mb-10">Production With </p>
-            {/* Movie Company */}
-            <div className="w-full h-1/2 flex items-center justify-center">
+            {/* PRODUCTION */}
+            <p className="w-full text-center text-white text-3xl font-bold my-10">
+            Production With
+            </p>
+            <div className="w-full flex items-center justify-center">
                 <PerMovieCompanies detailValue={detailValue} />
             </div>
         </>

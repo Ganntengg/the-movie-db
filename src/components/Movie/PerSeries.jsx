@@ -26,7 +26,7 @@ export default function PerSeries({TVSeries}) {
                     style={{ cursor: "pointer", }}
                     className='!w-auto bg-white rounded-md mt-5'
                 >
-                    <Link to={`/movies/${m.id}`} className=''>
+                    <Link to={`/series/${m.id}`} className=''>
                         <button className=' w-44 h-64 border-2 relative bg-transparent  rounded-lg text-start flex flex-col font-semibold justify-start overflow-hidden text-white group'>
                             <input type="hidden" name="id" id={m.id} />
                             <img src={m.poster_path ? `${baseUrlImg}${m.poster_path}` : './../../public/default.jpeg'} alt="movie img" 
